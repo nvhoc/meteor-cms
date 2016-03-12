@@ -49,7 +49,7 @@ SimpleSchema2 = function(obj){
         }
         that.opt.update_fields.push(aUpdateField);
     }
-    console.log('DEBUG obj');
-    console.log(obj);
+    //console.log('DEBUG obj');
+    //console.log(obj);
     that.opt.simpleObj = new SimpleSchema(obj);
 }

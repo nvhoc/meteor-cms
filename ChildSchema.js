@@ -50,7 +50,7 @@ ChildSchema = function(type,obj){
         }
         that.opt.update_fields.push(aUpdateField);
     }
-    console.log('DEBUG child');
-    console.log(obj);
+    //console.log('DEBUG child');
+    //console.log(obj);
     that.opt.simpleObj = new SimpleSchema(obj);
 };
