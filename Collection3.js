@@ -1,4 +1,5 @@
 Collection3 = function (name, options) {
+    this.isIgnore = false;
     this._collection = null;
     this._name = null;
     var _admin_perfix = 'manage';

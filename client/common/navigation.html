@@ -1,0 +1,62 @@
+<template name="navigation">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+
+            <!-- Close canvas menu used only on OffCanvas page -->
+            <!-- You can remove this tag if you dont use offCanvas menu -->
+            <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+            <!-- End offCanvas menu toggle -->
+
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    {{#with user}}
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle"
+                                 src="{{profile.avatar}}"/>
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle"
+                               href="#">
+                            <span class="clear"> <span
+                            class="block m-t-xs"> <strong
+                            class="font-bold">{{profile.name}}</strong>
+                             </span> <span
+                            class="text-muted text-xs block">{{profile.position}}
+                                <b class="caret"></b></span> </span> </a>
+                            <ul
+                            class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="{{pathFor route='profile'}}">Profile</a>
+                                </li>
+                                <li><a href="{{pathFor route='contacts'}}">Contacts</a>
+                                </li>
+                                <li><a href="{{pathFor route='mailbox'}}">Mailbox</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a
+                                href="{{pathFor route='login'}}">Logout</a></li>
+                            </ul>
+                        </div>
+                    {{/with}}
+                    <div class="logo-element">
+                        CB
+                    </div>
+                </li>
+                <li class="{{isActiveRoute 'data'}}">
+                    <a href="#"><i class="fa fa-th-large"></i> <span
+                    class="nav-label">Data Management</span> <span
+                    class="fa arrow"></span></a>
+                    <ul
+                    class="nav nav-second-level collapse {{isActiveRoute 'dataManagement' 'in'}}">
+                        {{#each collections}}
+                            <li class="{{isActiveRoute this}}"><a
+                            href="/{{getUrlCollections}}">{{getUpperCase this}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+</template>

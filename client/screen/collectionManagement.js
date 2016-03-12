@@ -38,4 +38,20 @@ Template.collectionManagement.events({
 Template.collectionManagement.onRendered(function(){
     Session.set('currentUpdateFieldId');
     Session.set('currentCollection');
+    $('body').addClass('fixed-sidebar');
+    $('body').addClass('full-height-layout');
+
+    // Set the height of the wrapper
+    $('#page-wrapper').css("min-height", $(window).height()  + "px");
+
+    // Add slimScroll to element
+    $('.full-height-scroll').slimscroll({
+        height: '100%'
+    });
+
+    // Add slimScroll to left navigation
+    $('.sidebar-collapse').slimScroll({
+        height: '100%',
+        railOpacity: 0.9
+    });
 })
