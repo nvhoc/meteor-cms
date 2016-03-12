@@ -1,0 +1,27 @@
+<template name="collectionManagement">
+  <div id="updateData" class="row">
+    <div class="col-md-4 fullheight">
+      {{#if selectedCollection}}
+        {{#each list_data_unique_field}}
+          <div class="row unique-field" data-id="{{id}}">
+            {{field}}
+          </div>
+        {{/each}}
+      {{/if}}
+      Please select a collection!
+    </div>
+    <div class="col-md-8 fullheight">
+      {{#if update_fields_id}}
+        {{#each list_data_update_fields}}
+          {{> a_update_filed type=this_field_type}}
+        {{/each}}
+      {{else}}
+        Please select a data!
+      {{/if}}
+      <div class="row">
+        <button class="cancel-update">Cancel</button>
+        <button class="save-update">Save</button>
+      </div>
+    </div>
+  </div>
+</template>
