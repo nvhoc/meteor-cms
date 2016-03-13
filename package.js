@@ -71,6 +71,7 @@ Package.on_use(function (api) {
         'SimpleSchema2.js',
         'ChildSchema.js'
     ]);
+    api.add_files('server/publish.js','server');
     api.export('MANAGECOLLECTION');
     api.export('ChildSchema');
     api.export('SimpleSchema2');

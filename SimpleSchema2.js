@@ -22,31 +22,31 @@ SimpleSchema2 = function (obj) {
         type: [String],
         optional: true
     };
-    obj.createdAt= {
+    obj.createdAt = {
         type: Date,
-        autoValue: function(){
-        if(this.isInsert) {
-            return new Date();
-        }else if(this.isUpsert){
-            return {$setOnInsert: new Date()};
-        }else{
-            return this.unset();
-        }
+        autoValue: function () {
+            if (this.isInsert) {
+                return new Date();
+            } else if (this.isUpsert) {
+                return {$setOnInsert: new Date()};
+            } else {
+                return this.unset();
+            }
         }
     };
-    obj.updatedAt= {
+    obj.updatedAt = {
         type: Date,
-        autoValue: function(){
-            if(this.isUpdate || this.isUpsert || this.isInsert) {
+        autoValue: function () {
+            if (this.isUpdate || this.isUpsert || this.isInsert) {
                 return new Date();
-            }else{
+            } else {
                 return this.unset();
             }
         }
     };
     for (var key in obj) {
         var aUpdateField = {type: "text"};
-        var aUniqueField = {priority: 0};
+        var aUniqueField = {priority: 0, type: obj[key].type};
         for (var field in obj[key]) {
             if (field == 'update_field') {
                 aUpdateField.name = key;

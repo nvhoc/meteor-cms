@@ -8,9 +8,9 @@ Router.route('/manage', function () {
         }
     });
 });
+Meteor.subscribe('dataManagement');
 Router.route('/manage/data/:collection_name', function(){
     this.layout('manageLayout');
-    Meteor.subscribe('dataManagement',this.params.collection_name);
     this.render('collectionManagement', {
         data: function () {
             return {
@@ -20,4 +20,4 @@ Router.route('/manage/data/:collection_name', function(){
             }
         }
     });
-})
+});

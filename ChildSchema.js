@@ -25,7 +25,7 @@ ChildSchema = function(type,obj){
     };
     for (var key in obj){
         var aUpdateField = {type: "text"};
-        var aUniqueField = {priority: 0};
+        var aUniqueField = {priority: 0, type: obj[key].type};
         for (var field in obj[key]){
             if (field =='update_field'){
                 aUpdateField.name =key;

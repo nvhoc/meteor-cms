@@ -1,58 +1,72 @@
 Template.collectionManagement.helpers({
-    list_data_unique_field: function(){
+    list_data_unique_field: function () {
         var collection = MANAGECOLLECTION.COLLECTIONLIST[this.collection_name];
         var data = collection.find({}).fetch();
         var list = [];
-        data.forEach(function(aData) {
-            var str ="";
-            collection._unique_fields.forEach(function (field) {
-                if (str !=""){
-                    str +="/";
+        var getUnique = function (uniFields, aData) {
+            var str = "";
+            uniFields.forEach(function (field) {
+                if (str != "") {
+                    str += "/";
                 }
                 if (aData[field.name]) {
                     if (field.reference) {
-                        var refData = MANAGECOLLECTION.COLLECTIONLIST[field.reference].findOne(aData[field.name]);
-                        str += refData[field.reference_name];
+                        var refCollection = MANAGECOLLECTION.COLLECTIONLIST[field.reference];
+                        var refData = refCollection.findOne(aData[field.name]);
+                        if (refData)
+                            str += getUnique(refCollection._unique_fields, refData);
                         return;
                     }
-                    str += aData[field.name];
+                    if (field.type == Date)
+                        str += moment(new Date(aData[field.name])).format('HH:MM - DD/MM/YYYY');
+                    else
+                        str += aData[field.name];
                 }
             });
-            list.push({field:str,id:aData._id, createdAt: aData.createdAt,infoC:aData.infoC,tagC:aData.tagC});
+            return str;
+        };
+        data.forEach(function (aData) {
+            list.push({
+                field: getUnique(collection._unique_fields, aData),
+                id: aData._id,
+                createdAt: aData.createdAt,
+                infoC: aData.infoC,
+                tagC: aData.tagC
+            });
         });
         return list;
     },
-    list_data_update_fields: function(){
+    list_data_update_fields: function () {
         var collection = MANAGECOLLECTION.COLLECTIONLIST[Session.get('currentCollection')];
         var list = collection._update_fields;
-        var data = collection.findOne({_id:Session.get('currentUpdateFieldId')});
+        var data = collection.findOne({_id: Session.get('currentUpdateFieldId')});
         //TODO if value is objec --> make lvl 2 update field
-        list.forEach(function(field){
+        list.forEach(function (field) {
             field.value = data[field.key];
         });
         return list;
     },
-    update_fields_id: function(){
+    update_fields_id: function () {
         return Session.get('currentUpdateFieldId');
     },
-    selectedCollection: function(){
+    selectedCollection: function () {
         return Session.get('currentCollection');
     }
 });
 Template.collectionManagement.events({
-    'click .unique-field': function(e){
+    'click .unique-field': function (e) {
         var el = e.currentTarget;
-        Session.set('currentUpdateFieldId',el.id);
+        Session.set('currentUpdateFieldId', el.id);
     }
 });
-Template.collectionManagement.onRendered(function(){
+Template.collectionManagement.onRendered(function () {
     Session.set('currentUpdateFieldId');
     Session.set('currentCollection');
     $('body').addClass('fixed-sidebar');
     $('body').addClass('full-height-layout');
 
     // Set the height of the wrapper
-    $('#page-wrapper').css("min-height", $(window).height()  + "px");
+    $('#page-wrapper').css("min-height", $(window).height() + "px");
 
     // Add slimScroll to element
     $('.full-height-scroll').slimscroll({
