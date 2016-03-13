@@ -8,25 +8,13 @@ Package.on_use(function (api) {
     api.use('mongo');
     api.use('aldeed:collection2@2.5.0');
     api.use('iron:router');
-    api.use('less','client');
     api.use('twbs:bootstrap','client');
     api.use('hocnv:meteor-permission',{weak: true});
     api.use(['session@1.0.0',
         'spacebars@1.0.0',
         'templating@1.0.0'
     ],'client');
-    api.add_files([
-        'client/lib/globalHelpers.js',
-        'client/common/footer.html',
-        'client/common/footer.js',
-        'client/common/navigation.html',
-        'client/common/navigation.js',
-        'client/common/top-navbar.html',
-        'client/common/top-navbar.js',
-        'client/common/page-heading.html',
-        'client/common/page-heading.js',
-        'client/layouts/manageLayout.html',
-        'client/stylesheets/animatecss/animate.css',
+    api.addAssets(['client/stylesheets/animatecss/animate.css',
         'client/stylesheets/globals/badgets_labels.import.less',
         'client/stylesheets/globals/base.import.less',
         'client/stylesheets/globals/buttons.import.less',
@@ -48,7 +36,20 @@ Package.on_use(function (api) {
         'client/stylesheets/globals/top_navigation.import.less',
         'client/stylesheets/globals/typography.import.less',
         'client/stylesheets/globals/variables.import.less',
-        'client/stylesheets/style.less',
+        'client/stylesheets/style.less'],'client');
+    api.addAssets('client/plugins/less/less.js','client');
+    api.add_files([
+        'client/lib/globalHelpers.js',
+        'client/common/footer.html',
+        'client/common/footer.js',
+        'client/common/navigation.html',
+        'client/common/navigation.js',
+        'client/common/top-navbar.html',
+        'client/common/top-navbar.js',
+        'client/common/page-heading.html',
+        'client/common/page-heading.js',
+        'client/layouts/manageLayout.html',
+        'client/layouts/manageLayout.js',
         'client/plugins/metisMenu/jquery.metisMenu.js',
         'client/plugins/slimscroll/jquery.slimscroll.min.js',
         'client/update_field/image_update_field.html',
