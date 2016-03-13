@@ -10,11 +10,13 @@ Router.route('/manage', function () {
 });
 Router.route('/manage/data/:collection_name', function(){
     this.layout('manageLayout');
+    Meteor.subscribe('dataManagement',this.params.collection_name);
     this.render('collectionManagement', {
         data: function () {
             return {
                 category: 'Data Management',
-                title: this.params.collection_name.toUpperCase() +" Management"
+                title: this.params.collection_name.toUpperCase() +" Management",
+                collection_name: this.params.collection_name
             }
         }
     });

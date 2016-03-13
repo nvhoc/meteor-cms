@@ -1,15 +1,4 @@
 Template.manageLayout.onCreated(function(){
-    //var links = document.head.getElementsByTagName('link');
-    //var length = links.length;
-    //for (var i = 0; i< length;){
-    //    var link = links[i];
-    //    if (link.rel = 'stylesheet'){
-    //        link.remove();
-    //        length--;
-    //        continue;
-    //    }
-    //    i++;
-    //}
     var styleElement = document.createElement('link');
     styleElement.setAttribute('rel', 'stylesheet');
     styleElement.setAttribute('type', 'text/less');

@@ -8,3 +8,6 @@ UI.registerHelper('isActiveRoute', function(routes, className) {
     var reg =  new RegExp(routes, 'i');
     return reg.test(url) ? className : '';
 });
+UI.registerHelper('getTime', function(time) {
+    return moment(new Date(time)).format('DD/MM/YYYY');
+});

@@ -1,14 +1,24 @@
 Template.collectionManagement.helpers({
     list_data_unique_field: function(){
-        var collection = MANAGECOLLECTION.COLLECTIONLIST[Session.get('currentCollection')];
+        var collection = MANAGECOLLECTION.COLLECTIONLIST[this.collection_name];
         var data = collection.find({}).fetch();
         var list = [];
         data.forEach(function(aData) {
             var str ="";
             collection._unique_fields.forEach(function (field) {
-                str += aData[field];
+                if (str !=""){
+                    str +="/";
+                }
+                if (aData[field.name]) {
+                    if (field.reference) {
+                        var refData = MANAGECOLLECTION.COLLECTIONLIST[field.reference].findOne(aData[field.name]);
+                        str += refData[field.reference_name];
+                        return;
+                    }
+                    str += aData[field.name];
+                }
             });
-            list.push({field:str,id:aData._id});
+            list.push({field:str,id:aData._id, createdAt: aData.createdAt,infoC:aData.infoC,tagC:aData.tagC});
         });
         return list;
     },

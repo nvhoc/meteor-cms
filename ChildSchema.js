@@ -1,13 +1,31 @@
 ChildSchema = function(type,obj){
     var that = this;
     that.opt ={
-        update_fields:[],
+        update_fields:[{
+            type: 'text',
+            name: 'infoC'
+        },{
+            type: 'tag',
+            name: 'tagC'
+        }],
         unique_fields:[],
         type: type,
         simpleObj: {}
     };
+    if (obj.infoC || obj.tagC){
+        throw Error("these field was registered by this cms package!");
+    }
+    obj.infoC ={
+        type: String,
+        optional: true
+    };
+    obj.tagC = {
+        type: [String],
+        optional: true
+    };
     for (var key in obj){
-        var aUpdateField = {};
+        var aUpdateField = {type: "text"};
+        var aUniqueField = {priority: 0};
         for (var field in obj[key]){
             if (field =='update_field'){
                 aUpdateField.name =key;
@@ -42,14 +60,36 @@ ChildSchema = function(type,obj){
                 delete obj[key].type_of_field;
                 continue;
             }
-            if (field =='unique_field'){
-                that.opt.unique_fields.push(key);
+            if (field == 'unique_field') {
+                aUniqueField.name = key;
                 delete obj[key].unique_field;
                 continue;
             }
+            if (field == 'unique_field_priority') {
+                var priority = parseInt(obj[key].unique_field_priority);
+                if (typeof priority != "number")
+                    throw Error("type of unique_field_priority must be number");
+                aUniqueField.priority = priority;
+                delete obj[key].unique_field_priority;
+            }
+            if (field == 'unique_field_reference') {
+                aUniqueField.reference = obj[key].unique_field_reference;
+                delete obj[key].unique_field_reference;
+            }
+            if (field == 'unique_field_reference_name') {
+                aUniqueField.reference_name = obj[key].unique_field_reference_name;
+                delete obj[key].unique_field_reference_name;
+            }
         }
         that.opt.update_fields.push(aUpdateField);
+        if (aUniqueField.name)
+            that.opt.unique_fields.push(aUniqueField);
     }
+    that.opt.unique_fields = QuickSort(that.opt.unique_fields, function (a, b) {
+        var aa = a.priority;
+        var bb = b.priority;
+        return aa < bb;
+    });
     //console.log('DEBUG child');
     //console.log(obj);
     that.opt.simpleObj = new SimpleSchema(obj);

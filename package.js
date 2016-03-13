@@ -8,6 +8,7 @@ Package.on_use(function (api) {
     api.use('mongo');
     api.use('aldeed:collection2@2.5.0');
     api.use('iron:router');
+    api.use('momentjs:moment');
     api.use('twbs:bootstrap','client');
     api.use('hocnv:meteor-permission',{weak: true});
     api.use(['session@1.0.0',
@@ -64,6 +65,7 @@ Package.on_use(function (api) {
         'client/router.js'
     ],'client');
     api.add_files([
+        'lib/QuickSort.js',
         'Collection3.js',
         'ManageCollection.js',
         'SimpleSchema2.js',
