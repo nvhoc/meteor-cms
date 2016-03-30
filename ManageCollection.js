@@ -1,4 +1,5 @@
 MANAGECOLLECTION = {
+    SEPERATE_CHARACTER: "/",
     COLLECTIONLIST: {},
     init: function (list,ignore) {
         var l = list.length;
@@ -8,4 +9,5 @@ MANAGECOLLECTION = {
                 MANAGECOLLECTION.COLLECTIONLIST[list[i]].isIgnore = true;
         }
     }
+
 };

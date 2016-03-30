@@ -54,13 +54,18 @@ Package.on_use(function (api) {
         'client/plugins/metisMenu/jquery.metisMenu.js',
         'client/plugins/slimscroll/jquery.slimscroll.min.js',
         'client/update_field/image_update_field.html',
+        'client/update_field/imagelist_update_field.html',
         'client/update_field/label_update_field.html',
         'client/update_field/textbox_update_field.html',
         'client/update_field/a_update_field.html',
+        'client/update_field/date_update_field.html',
         'client/update_field/a_update_filed.js',
         'client/update_field/image_update_field.js',
+        'client/update_field/imagelist_update_field.js',
         'client/screen/collectionManagement.html',
         'client/screen/collectionManagement.js',
+        'client/screen/collection_data_modification/collection_data_modification.html',
+        'client/screen/collection_data_modification/collection_data_modification.js',
         'client/screen/blank.html',
         'client/router.js'
     ],'client');

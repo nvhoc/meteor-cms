@@ -1,0 +1,23 @@
+<template name="collection_data_modification">
+    {{#each list_data_update_field}}
+        {{#if isImage}}
+            {{> image_update_field}}
+        {{else}}
+            {{#if isTextBox}}
+                {{> textbox_update_field}}
+            {{else}}
+                {{#if isLabel}}
+                    {{> label_update_field}}
+                {{else}}
+                    {{#if isImageList}}
+                        {{> image_list_update_field}}
+                    {{else}}
+                        {{#if isImageList}}
+                            {{> date_update_field}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    {{/each}}
+</template>

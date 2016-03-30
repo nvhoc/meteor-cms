@@ -1,4 +1,4 @@
-Template.imagelist_update_field.onRendered(function () {
+Template.image_list_update_field.onRendered(function () {
     var imageId = this.data.value;
     $("input[data-id=" + imageId + "]").each(function () {
         var el = $(this);
@@ -20,7 +20,7 @@ Template.imagelist_update_field.onRendered(function () {
     });
 
 });
-Template.imagelist_update_field.events({
+Template.image_list_update_field.events({
     'click .fileinput-remove': function (e) {
         var el = $(e.currentTarget);
         var id = el.parents('.form-group').attr('id');

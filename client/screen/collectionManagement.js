@@ -7,7 +7,7 @@ Template.collectionManagement.helpers({
             var str = "";
             uniFields.forEach(function (field) {
                 if (str != "") {
-                    str += "/";
+                    str += MANAGECOLLECTION.SEPERATE_CHARACTER;
                 }
                 if (aData[field.name]) {
                     if (field.reference) {
@@ -46,17 +46,17 @@ Template.collectionManagement.helpers({
         });
         return list;
     },
-    update_fields_id: function () {
-        return Session.get('currentUpdateFieldId');
+    current_unique_key: function () {
+        return Session.get('current_unique_key');
     },
     selectedCollection: function () {
         return Session.get('currentCollection');
     }
 });
 Template.collectionManagement.events({
-    'click .unique-field': function (e) {
-        var el = e.currentTarget;
-        Session.set('currentUpdateFieldId', el.id);
+    'click .open-update-fields': function(e){
+        var field = $(e.currentTarget).data('field');
+        Session.set('current_unique_key', field);
     }
 });
 Template.collectionManagement.onRendered(function () {

@@ -1,7 +1,12 @@
-<template name="imagelist_update_field">
-  <div class="row a-update-field">
-    <label>{{name}}</label>
-    <input id="slide-basic-upload" type="file" multiple class="file-loading"  data-name="{{name}}" data-id="{{value}}"
-           accept="image/*">
-  </div>
+<template name="image_list_update_field">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fa fa-info-circle"></i> {{name}}
+        </div>
+        <div class="panel-body">
+            <input id="slide-basic-upload" type="file" multiple class="file-loading"  data-name="{{name}}" data-id="{{value}}"
+                   accept="image/*">
+        </div>
+
+    </div>
 </template>

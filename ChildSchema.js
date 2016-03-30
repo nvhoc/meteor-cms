@@ -1,21 +1,21 @@
-ChildSchema = function(type,obj){
+ChildSchema = function (type, obj) {
     var that = this;
-    that.opt ={
-        update_fields:[{
+    that.opt = {
+        update_fields: [{
             type: 'text',
             name: 'infoC'
-        },{
+        }, {
             type: 'tag',
             name: 'tagC'
         }],
-        unique_fields:[],
+        unique_fields: [],
         type: type,
         simpleObj: {}
     };
-    if (obj.infoC || obj.tagC){
+    if (obj.infoC || obj.tagC) {
         throw Error("these field was registered by this cms package!");
     }
-    obj.infoC ={
+    obj.infoC = {
         type: String,
         optional: true
     };
@@ -23,31 +23,31 @@ ChildSchema = function(type,obj){
         type: [String],
         optional: true
     };
-    for (var key in obj){
+    for (var key in obj) {
         var aUpdateField = {type: "text"};
         var aUniqueField = {priority: 0, type: obj[key].type};
-        for (var field in obj[key]){
-            if (field =='update_field'){
-                aUpdateField.name =key;
+        for (var field in obj[key]) {
+            if (field == 'update_field') {
+                aUpdateField.name = key;
                 delete obj[key].update_field;
                 continue;
             }
-            if (field =='type_of_field'){
-                aUpdateField.type =obj[key][field];
-                switch (aUpdateField.type){
+            if (field == 'type_of_field') {
+                aUpdateField.type = obj[key][field];
+                switch (aUpdateField.type) {
                     case "child":
                         var typeChild = obj[key]["type"];
-                        var orginalTypeChild ={};
-                        if (Array.isArray(typeChild)){
+                        var orginalTypeChild = {};
+                        if (Array.isArray(typeChild)) {
                             orginalTypeChild = typeChild[0];
                             obj[key]["type"] = [orginalTypeChild.opt.simpleObj];
-                        }else {
+                        } else {
                             orginalTypeChild = typeChild;
                             obj[key]["type"] = orginalTypeChild.opt.simpleObj;
                         }
                         aUpdateField.child = {
-                            update_fields : orginalTypeChild.opt.update_fields,
-                            unique_fields : orginalTypeChild.opt.unique_fields,
+                            update_fields: orginalTypeChild.opt.update_fields,
+                            unique_fields: orginalTypeChild.opt.unique_fields,
                             type: orginalTypeChild.opt.type
                         };
                         break;
@@ -81,7 +81,8 @@ ChildSchema = function(type,obj){
                 delete obj[key].unique_field_reference_name;
             }
         }
-        that.opt.update_fields.push(aUpdateField);
+        if (aUpdateField.name)
+            that.opt.update_fields.push(aUpdateField);
         if (aUniqueField.name)
             that.opt.unique_fields.push(aUniqueField);
     }

@@ -102,7 +102,8 @@ SimpleSchema2 = function (obj) {
                 delete obj[key].unique_field_reference_name;
             }
         }
-        that.opt.update_fields.push(aUpdateField);
+        if (aUpdateField.name)
+            that.opt.update_fields.push(aUpdateField);
         if (aUniqueField.name)
             that.opt.unique_fields.push(aUniqueField);
     }

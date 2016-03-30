@@ -19,31 +19,51 @@ Collection3 = function (name, options) {
 
     this.find = function () {
         var f_args = Array.prototype.slice.call(arguments);
-        return this._collection.secureFind.apply(this._collection,f_args);
+        return this._collection.secureFind.apply(this._collection, f_args);
     };
     this.findOne = function () {
         var f_args = Array.prototype.slice.call(arguments);
-        return this._collection.secureFindOne.apply(this._collection,f_args);
+        return this._collection.secureFindOne.apply(this._collection, f_args);
     };
     this.insert = function () {
         var f_args = Array.prototype.slice.call(arguments);
-        return this._collection.secureInsert.apply(this._collection,f_args);
+        return this._collection.secureInsert.apply(this._collection, f_args);
     };
     this.update = function () {
         var f_args = Array.prototype.slice.call(arguments);
-        return this._collection.secureUpdate.apply(this._collection,f_args);
+        return this._collection.secureUpdate.apply(this._collection, f_args);
     };
     this.remove = function () {
         var f_args = Array.prototype.slice.call(arguments);
-        return this._collection.secureRemove.apply(this._collection,f_args);
+        return this._collection.secureRemove.apply(this._collection, f_args);
     };
     this.attachSchema = function (schema) {
         this._unique_fields = schema.opt.unique_fields;
         this._update_fields = schema.opt.update_fields;
         console.log(schema.opt.simpleObj);
         if (schema.opt.simpleObj.parent)
-        console.log(schema.opt.simpleObj.parent);
+            console.log(schema.opt.simpleObj.parent);
         this._collection.attachSchema(schema.opt.simpleObj);
 
     };
+};
+Collection3.prototype.getQuery = function (key) {
+    var key_arr = key.split(MANAGECOLLECTION.SEPERATE_CHARACTER);
+    var i = 0;
+    var query = {};
+    try {
+        this._unique_fields.forEach(function (field) {
+            if (aData[field.name]) {
+                query[field.name] = key_arr[i];
+                i++
+            }
+        });
+        if (i !== key_arr.length){
+            throw ("wrong key");
+        }
+    } catch (e){
+        throw e
+    }
+    return query;
+
 };

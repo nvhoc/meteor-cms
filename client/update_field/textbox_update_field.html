@@ -1,6 +1,11 @@
 <template name="textbox_update_field">
-  <div class="row a-update-field">
-    <label>{{name}}</label>
-    <textbox class="" data-name="{{name}}" value="{{value}}"></textbox>
-  </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fa fa-info-circle"></i> {{name}}
+        </div>
+        <div class="panel-body">
+            <textarea class="note-editable" data-name="{{name}}">{{getValue collection_name name ..}}</textarea>
+        </div>
+
+    </div>
 </template>
