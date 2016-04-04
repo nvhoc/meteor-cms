@@ -9,8 +9,8 @@
             <div class="full-height-scroll">
                 <ul class="list-group elements-list">
                     {{#each list_data_unique_field}}
-                    <li class="list-group-item">
-                        <a data-toggle="tab" class="open-update-fields" data-field="{{id}}">
+                    <li class="list-group-item open-update-fields" data-field="{{id}}">
+                        <a data-toggle="tab" >
                             <small class="pull-right text-muted">{{getTime createdAt}}</small>
                             <strong>{{field}}</strong>
                             <div class="small m-t-xs">
@@ -38,18 +38,18 @@
 
                         <div id="tab-n" class="tab-pane active">
                             {{#if current_unique_key}}
-                            <div class="pull-right">
-                                <div class="tooltip-demo">
-                                    <button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="left" title="Plug this message"><i class="fa fa-plug"></i> Plug it</button>
-                                    <button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="Mark as read"><i class="fa fa-eye"></i> </button>
-                                    <button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mark as important"><i class="fa fa-exclamation"></i> </button>
-                                    <button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Move to trash"><i class="fa fa-trash-o"></i> </button>
+                            <!--<div class="pull-right">-->
+                                <!--<div class="tooltip-demo">-->
+                                    <!--<button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="left" title="Plug this message"><i class="fa fa-plug"></i> Plug it</button>-->
+                                    <!--<button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="Mark as read"><i class="fa fa-eye"></i> </button>-->
+                                    <!--<button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mark as important"><i class="fa fa-exclamation"></i> </button>-->
+                                    <!--<button class="btn btn-white btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Move to trash"><i class="fa fa-trash-o"></i> </button>-->
 
-                                </div>
-                            </div>
-                            <div class="small text-muted">
-                                <i class="fa fa-clock-o"></i> Friday, 12 April 2014, 12:32 am
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="small text-muted">-->
+                                <!--<i class="fa fa-clock-o"></i> Friday, 12 April 2014, 12:32 am-->
+                            <!--</div>-->
 
                             {{>collection_data_modification current_unique_key=current_unique_key collection_name=collection_name}}
 

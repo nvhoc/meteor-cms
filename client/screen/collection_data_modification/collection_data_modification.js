@@ -11,6 +11,9 @@ Template.collection_data_modification.helpers({
     'isImageList': function () {
         return this.type == 'imagelist';
     },
+    'isTextBoxList': function(){
+        return this.type == 'textboxlist';
+    },
     'list_data_update_field': function () {
         var collection = MANAGECOLLECTION.COLLECTIONLIST[this.collection_name];
         return collection._update_fields;

@@ -3,9 +3,47 @@
         <div class="panel-heading">
             <i class="fa fa-info-circle"></i> {{name}}
         </div>
-        <div class="panel-body">
-            <textarea class="note-editable" data-name="{{name}}">{{getValue collection_name name ..}}</textarea>
+        <div id="textbox-panel-body" class="panel-body">
         </div>
 
     </div>
+</template>
+
+<template name="textbox_panel_body">
+    <textarea class="note-editable" data-name="{{name}}">{{data}}</textarea>
+</template>
+
+
+
+<template name="textbox_list_update_field">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <i class="fa fa-info-circle"></i> {{name}}
+        </div>
+        <div class="panel-body">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    {{#each getValue name}}
+                        <li><a data-toggle="tab"
+                               href="#tab-{{index}}"> textbox {{index}}</a></li>
+                    {{/each}}
+                </ul>
+                <div id='tab-content-textbox-list' class="tab-content ">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</template>
+
+<template name="tab_content_textbox_list">
+    {{#each data}}
+        <div id="tab-{{index}}" class="tab-pane">
+                                <textarea data-name="{{getParent .. name}}"
+                                          data-index={{index}}>{{content}}</textarea>
+        </div>
+    {{/each}}
 </template>

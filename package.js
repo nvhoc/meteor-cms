@@ -3,6 +3,7 @@ Package.describe({
     summary: "Provide a collection manager",
     version: "0.0.1"
 });
+//must add froala:editor
 
 Package.on_use(function (api) {
     api.use('mongo');
@@ -57,6 +58,7 @@ Package.on_use(function (api) {
         'client/update_field/imagelist_update_field.html',
         'client/update_field/label_update_field.html',
         'client/update_field/textbox_update_field.html',
+        'client/update_field/textbox_update_field.js',
         'client/update_field/a_update_field.html',
         'client/update_field/date_update_field.html',
         'client/update_field/a_update_filed.js',

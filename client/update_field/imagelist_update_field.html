@@ -4,6 +4,13 @@
             <i class="fa fa-info-circle"></i> {{name}}
         </div>
         <div class="panel-body">
+            <div class="row">
+            {{#each getValue name}}
+                <div class="col-md-2">
+                    <img src="{{refactorImage content}}" height="200" width="200">
+                </div>
+            {{/each}}
+            </div>
             <input id="slide-basic-upload" type="file" multiple class="file-loading"  data-name="{{name}}" data-id="{{value}}"
                    accept="image/*">
         </div>
